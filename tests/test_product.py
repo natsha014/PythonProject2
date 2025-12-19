@@ -24,3 +24,11 @@ def test_product_price_setter(capsys, product_test):
     value = 220000.0
     product_test.price = value
     assert product_test.price == 220000.0
+
+
+def test_product_str(product_test):
+    assert str(product_test) == "Iphone 15, 210000.0 руб. Остаток: 8 шт."
+
+
+def test_product_add(product_test, product_test_2):
+    assert product_test + product_test_2 == 2580000.0
