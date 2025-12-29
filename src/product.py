@@ -3,7 +3,7 @@ class Product:
     description: str
     quantity: int
 
-    def __init__(self, name, description, price: float, quantity):  # type: ignore
+    def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
         self.description = description
         self.__price = price
@@ -13,7 +13,10 @@ class Product:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other: "Product") -> float:
-        return self.__price * self.quantity + other.__price * other.quantity
+        if type(other) is Product:
+            return self.__price * self.quantity + other.__price * other.quantity
+        else:
+            raise TypeError
 
     @property
     def price(self) -> float:
