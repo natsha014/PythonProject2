@@ -1,10 +1,11 @@
 from typing import List
 from typing import Optional
 
+from src.base_category import BaseCategory
 from src.product import Product
 
 
-class Category:
+class Category(BaseCategory):
     name: str
     description: str
     category_count = 0
@@ -15,12 +16,10 @@ class Category:
         self.description = description
         self.__products: List[Product] = products if products else []
         Category.category_count += 1
-        Category.product_count += len(products) if products else 0
+        Category.product_count += len(self.__products)
 
     def __str__(self) -> str:
-        sum_quantity = 0
-        for product in self.__products:
-            sum_quantity += product.quantity
+        sum_quantity = sum(product.quantity for product in self.__products)
         return f"{self.name}, количество продуктов: {sum_quantity} шт."
 
     @property
