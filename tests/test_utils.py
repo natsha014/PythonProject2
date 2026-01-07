@@ -37,6 +37,6 @@ def test_create_objects(sample_json):
     categories = create_objects(sample_json)
     assert len(categories) == 2
     assert categories[0].name == "Category1"
-    assert categories[0].products_ret[0].name == "Product1"
+    assert categories[0].products[0].name == "Product1"
     assert categories[1].name == "Category2"
-    assert categories[1].products_ret[0].name == "Product2"
+    assert categories[1].products[0].name == "Product2"

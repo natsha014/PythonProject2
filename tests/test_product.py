@@ -20,7 +20,9 @@ def test_product_price_setter(capsys, product_test):
     value = 0
     product_test.price = value
     message = capsys.readouterr()
-    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
+    assert message.out.strip() == (
+        "Product(Iphone 15, 512GB, Gray space, 210000.0, 8)\n" "Цена не должна быть нулевая или отрицательная"
+    )
     value = 220000.0
     product_test.price = value
     assert product_test.price == 220000.0
