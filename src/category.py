@@ -23,14 +23,14 @@ class Category(BaseCategory):
         return f"{self.name}, количество продуктов: {sum_quantity} шт."
 
     @property
-    def products(self) -> str:
+    def products_format(self) -> str:
         products_str = ""
         for product in self.__products:
             products_str += f"{str(product)}\n"
         return products_str
 
     @property
-    def products_ret(self) -> list[Product]:
+    def products(self) -> list[Product]:
         return self.__products
 
     def add_product(self, products: Product) -> None:
