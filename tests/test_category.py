@@ -51,7 +51,7 @@ def test_middle_price(first_category, category_without_products):
 
 
 def test_add_product_zero_quantity_raises():
-    with pytest.raises(ZeroQuantityProduct) as excinfo:
+    with pytest.raises(ZeroQuantityProduct) as e:
         Product("Тест", "Описание", 100, 0)
 
-    assert str(excinfo.value) == "Товар с нулевым количеством не может быть добавлен"
+    assert str(e.value) == "Товар с нулевым количеством не может быть добавлен"
