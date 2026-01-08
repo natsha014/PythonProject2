@@ -2,6 +2,7 @@ from typing import List
 from typing import Optional
 
 from src.base_category import BaseCategory
+from src.my_exception import ZeroQuantityProduct
 from src.product import Product
 
 
@@ -35,7 +36,22 @@ class Category(BaseCategory):
 
     def add_product(self, products: Product) -> None:
         if isinstance(products, Product):
-            self.__products.append(products)
-            Category.product_count += 1
+            try:
+                if products.quantity == 0:
+                    raise ZeroQuantityProduct
+            except ZeroQuantityProduct as e:
+                print(e)
+            else:
+                self.__products.append(products)
+                Category.product_count += 1
+                print("Товар добавлен")
+            finally:
+                print("Обработка добавления товара завершена")
         else:
             raise TypeError
+
+    def middle_price(self) -> float:
+        try:
+            return round(sum([product.price for product in self.__products]) / len(self.__products), 2)
+        except ZeroDivisionError:
+            return 0

@@ -1,5 +1,8 @@
 import pytest
 
+from src.my_exception import ZeroQuantityProduct
+from src.product import Product
+
 
 def test_category_init(first_category, second_category):
     assert first_category.name == "Смартфоны"
@@ -40,3 +43,15 @@ def test_category_str(first_category):
 def test_category_add_product_error(first_category):
     with pytest.raises(TypeError):
         first_category.add_product(1)
+
+
+def test_middle_price(first_category, category_without_products):
+    assert first_category.middle_price() == 140333.33
+    assert category_without_products.middle_price() == 0
+
+
+def test_add_product_zero_quantity_raises():
+    with pytest.raises(ZeroQuantityProduct) as excinfo:
+        Product("Тест", "Описание", 100, 0)
+
+    assert str(excinfo.value) == "Товар с нулевым количеством не может быть добавлен"

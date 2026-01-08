@@ -1,4 +1,5 @@
 from src.base_product import BaseProduct
+from src.my_exception import ZeroQuantityProduct
 from src.print_mixin import PrintMixin
 
 
@@ -11,7 +12,10 @@ class Product(BaseProduct, PrintMixin):
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
+        if quantity > 0:
+            self.quantity = quantity
+        else:
+            raise ZeroQuantityProduct("Товар с нулевым количеством не может быть добавлен")
         super().__init__()
 
     def __str__(self) -> str:
