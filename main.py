@@ -8,7 +8,7 @@ from src.lawn_grass import LawnGrass
 from src.order import Order
 from src.my_exception import ZeroQuantityProduct
 
-if __name__ == "__main__":  # pragma: no cover
+if __name__ == "__main__":
     try:
         product_invalid = Product("Бракованный товар", "Неверное количество", 1000.0, 0)
     except ValueError as e:
